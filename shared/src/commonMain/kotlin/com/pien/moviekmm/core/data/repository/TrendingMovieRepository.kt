@@ -6,5 +6,6 @@ import com.pien.moviekmm.core.data.response.Result
 
 interface TrendingMovieRepository {
     suspend fun getTrendingMovies(): Result<MoviePaging, DataError>
+    suspend fun getLocalTrendingMovies(): Result<MoviePaging, DataError>
     suspend fun searchMovie(query: String): Result<MoviePaging, DataError>
 }

@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.material3.Text
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.pien.moviekmm.android.R
@@ -46,6 +47,7 @@ fun NoConnectionScreen(modifier: Modifier, errorText: String) {
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp,
+                color = Color.White,
                 modifier = Modifier.padding(16.dp)
             )
         }

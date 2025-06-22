@@ -70,6 +70,7 @@ fun TrendingMoviesScreen(
             .clip(RoundedCornerShape(15.dp))
             .height(60.dp),
             searchText = uiState.searchText,
+            showReload = uiState.showReload,
             onQueryChange = { onEvent(TrendingMovieEvent.SearchMovies(it)) },
             onClearText = {onEvent(TrendingMovieEvent.SearchMovies(""))})
 
@@ -83,7 +84,7 @@ fun TrendingMoviesScreen(
                         .padding(8.dp))
             }
         } else if(uiState.errorToast.isNotEmpty()) {
-            NoConnectionScreen(modifier = modifier.padding(30.dp), uiState.errorToast)
+            NoConnectionScreen(modifier = modifier.padding(30.dp).fillMaxSize(), uiState.errorToast)
         } else {
             LazyRow(
                 state = state,

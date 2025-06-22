@@ -7,4 +7,5 @@ data class TrendingMovieUIState(
     var showLoading: Boolean = false,
     var errorToast: String = "",
     var searchText: String = "",
+    var showReload: Boolean = false,
     var backgroundUrl: String = "")

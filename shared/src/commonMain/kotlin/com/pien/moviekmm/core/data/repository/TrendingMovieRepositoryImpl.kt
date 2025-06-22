@@ -9,18 +9,15 @@ class TrendingMovieRepositoryImpl(
     private val remoteDataSource: RemoteTrendingMoviesDataSource,
     private val localDataSource: LocalTrendingMoviesDataSource): TrendingMovieRepository {
     override suspend fun getTrendingMovies(): Result<MoviePaging, DataError> {
-        val localQueryResult = localDataSource.getTrendingMovies()
-        if (localQueryResult is Result.Success) {
-            val localData = localQueryResult.data
-            if (localData.results.isNotEmpty()) {
-                return localQueryResult
-            }
-        }
         val networkQueryResult = remoteDataSource.getTrendingMovies()
         if(networkQueryResult is Result.Success) {
             localDataSource.saveTrendingMovies(networkQueryResult.data.results)
         }
         return networkQueryResult
+    }
+
+    override suspend fun getLocalTrendingMovies(): Result<MoviePaging, DataError> {
+        return localDataSource.getTrendingMovies()
     }
 
     override suspend fun searchMovie(query: String): Result<MoviePaging, DataError> {

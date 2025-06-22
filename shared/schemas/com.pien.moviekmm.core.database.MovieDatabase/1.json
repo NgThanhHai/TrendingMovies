@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6576c0f9a444f05465a0ef73fabb9970",
+    "identityHash": "3c7356885a3cd8c1cd9af009c14ff5d2",
     "entities": [
       {
         "tableName": "MovieEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`internalId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id` INTEGER NOT NULL, `title` TEXT NOT NULL, `posterPath` TEXT, `releaseDate` TEXT NOT NULL, `voteAverage` REAL NOT NULL, `voteCount` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`internalId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id` INTEGER NOT NULL, `title` TEXT NOT NULL, `posterPath` TEXT, `releaseDate` TEXT, `voteAverage` REAL, `voteCount` INTEGER)",
         "fields": [
           {
             "fieldPath": "internalId",
@@ -34,20 +34,17 @@
           {
             "fieldPath": "releaseDate",
             "columnName": "releaseDate",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "voteAverage",
             "columnName": "voteAverage",
-            "affinity": "REAL",
-            "notNull": true
+            "affinity": "REAL"
           },
           {
             "fieldPath": "voteCount",
             "columnName": "voteCount",
-            "affinity": "INTEGER",
-            "notNull": true
+            "affinity": "INTEGER"
           }
         ],
         "primaryKey": {
@@ -135,7 +132,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6576c0f9a444f05465a0ef73fabb9970')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3c7356885a3cd8c1cd9af009c14ff5d2')"
     ]
   }
 }

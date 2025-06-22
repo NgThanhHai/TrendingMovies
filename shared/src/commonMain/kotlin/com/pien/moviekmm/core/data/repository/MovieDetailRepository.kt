@@ -6,4 +6,5 @@ import com.pien.moviekmm.core.data.response.Result
 
 interface MovieDetailRepository {
     suspend fun getMovieDetail(movieId: Int): Result<MovieDetail, DataError>
+    suspend fun getLocalMovieDetail(movieId: Int): Result<MovieDetail, DataError>
 }

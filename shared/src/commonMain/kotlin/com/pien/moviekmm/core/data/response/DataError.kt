@@ -4,7 +4,7 @@ package com.pien.moviekmm.core.data.response
 interface Error
 sealed interface DataError : Error {
     enum class Network : DataError {
-        SERVICE_UNAVAILABLE,
+        NO_INTERNET,
         CLIENT_ERROR,
         SERVER_ERROR,
         UNKNOWN_ERROR

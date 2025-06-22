@@ -62,7 +62,7 @@ fun MovieItem(movie: Movie,
                 .padding(vertical = 8.dp)
                 .padding(horizontal = 4.dp)
         )
-        RatingBar(movie.voteAverage.toFloat()/2, modifier
+        RatingBar((movie.voteAverage ?: 0).toFloat()/2, modifier
             .padding(vertical = 8.dp)
             .padding(horizontal = 4.dp)
             .height(20.dp))

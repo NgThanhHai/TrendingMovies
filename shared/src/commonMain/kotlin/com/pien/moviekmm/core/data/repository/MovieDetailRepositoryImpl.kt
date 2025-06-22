@@ -11,14 +11,14 @@ class MovieDetailRepositoryImpl(
     private val localDataSource: LocalMovieDetailsDataSource
     ): MovieDetailRepository {
     override suspend fun getMovieDetail(movieId: Int): Result<MovieDetail, DataError> {
-        val localQueryResult = localDataSource.getMovieDetail(movieId)
-        if (localQueryResult is Result.Success && localQueryResult.data.id != 0) {
-            return Result.Success(localQueryResult.data)
-        }
         val remoteQueryResult = remoteDataSource.getMovieDetail(movieId)
         if (remoteQueryResult is Result.Success) {
             localDataSource.saveMovieDetail(remoteQueryResult.data)
         }
         return remoteQueryResult
+    }
+
+    override suspend fun getLocalMovieDetail(movieId: Int): Result<MovieDetail, DataError> {
+        return localDataSource.getMovieDetail(movieId)
     }
 }

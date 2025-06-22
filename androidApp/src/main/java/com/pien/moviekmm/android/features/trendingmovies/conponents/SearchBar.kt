@@ -2,13 +2,14 @@ package com.pien.moviekmm.android.features.trendingmovies.conponents
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MovieSearchBar(modifier: Modifier = Modifier,
     searchText: String,
+    showReload: Boolean,
     onQueryChange: (String) -> Unit,
     onClearText: () -> Unit) {
 
@@ -49,14 +51,25 @@ fun MovieSearchBar(modifier: Modifier = Modifier,
             unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
         ),
         trailingIcon = {
-            if(searchText.isNotEmpty()) {
-                Icon(
-                    Icons.Default.Clear,
-                    contentDescription = "",
-                    modifier = Modifier.clickable {
+            Row {
+                if(searchText.isNotEmpty()) {
+                    Icon(
+                        Icons.Default.Clear,
+                        contentDescription = "",
+                        modifier = Modifier.clickable {
                             onClearText.invoke()
                         }
-                )
+                    )
+                }
+                if (showReload) {
+                    Icon(
+                        Icons.Default.Refresh,
+                        contentDescription = "",
+                        modifier = Modifier.clickable {
+                            onQueryChange(searchText)
+                        }
+                    )
+                }
             }
         }
     )
@@ -71,7 +84,8 @@ fun MovieSearchBarPreview() {
             .background(MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(15.dp))
             .clip(RoundedCornerShape(15.dp))
             .height(70.dp),
-        searchText = "",
+        searchText = "search",
+        showReload = true,
         onQueryChange = {},
         onClearText = {})
 }

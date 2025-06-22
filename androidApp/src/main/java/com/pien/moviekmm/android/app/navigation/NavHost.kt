@@ -3,8 +3,10 @@ package com.pien.moviekmm.android.app.navigation
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.pien.moviekmm.android.features.moviedetails.navigation.MOVIE_DETAIL_ROUTE
@@ -13,7 +15,6 @@ import com.pien.moviekmm.android.features.trendingmovies.navigation.TRENDING_MOV
 import com.pien.moviekmm.android.features.trendingmovies.navigation.trendingMovieScreen
 
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun AppNavHost(
     navController: NavHostController,
