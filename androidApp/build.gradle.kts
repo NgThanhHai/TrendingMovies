@@ -57,7 +57,6 @@ dependencies {
 
     //ktor android
     implementation(libs.ktor.android)
-    implementation(libs.accompanist.drawablepainter)
 
     // Image Loading - Coil
     implementation(libs.coil.compose)

@@ -99,7 +99,6 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.ktor.android)
-                implementation(libs.accompanist.drawablepainter)
             }
         }
         val iosMain by creating {

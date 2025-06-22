@@ -14,7 +14,6 @@ coil = "3.0.4"
 kotlinx-serialization = "1.8.0"
 kotlinx-coroutines = "1.9.0"
 androidxHiltNavigationCompose = "1.2.0"
-accompanistDrawablepainter = "0.28.0"
 playServicesAuth = "21.3.0"
 room="2.7.2"
 sqlite = "2.5.0-SNAPSHOT"
@@ -28,7 +27,6 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
-accompanist-drawablepainter = { module = "com.google.accompanist:accompanist-drawablepainter", version.ref = "accompanistDrawablepainter" }
 
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
