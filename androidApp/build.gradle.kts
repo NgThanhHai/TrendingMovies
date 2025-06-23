@@ -47,7 +47,7 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
-
+    implementation(libs.navigation.compose)
 
     // Hilt
     implementation(libs.androidx.hilt.navigation.compose)
@@ -58,9 +58,8 @@ dependencies {
     //ktor android
     implementation(libs.ktor.android)
 
-    // Image Loading - Coil
-    implementation(libs.coil.compose)
-    implementation(libs.coil.network.ktor3)
+    // Image Loading - Glide
+    implementation(libs.glide.compose)
 
     // Serialization & Coroutines
     implementation(libs.kotlinx.serialization.json)

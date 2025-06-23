@@ -5,10 +5,8 @@ import com.pien.moviekmm.core.data.local.LocalMovieDetailsDataSource
 import com.pien.moviekmm.core.data.local.LocalTrendingMoviesDataSource
 import com.pien.moviekmm.core.data.mapper.MovieDetailMapper
 import com.pien.moviekmm.core.data.mapper.MovieMapper
-import com.pien.moviekmm.core.data.repository.MovieDetailRepository
-import com.pien.moviekmm.core.data.repository.MovieDetailRepositoryImpl
-import com.pien.moviekmm.core.data.repository.TrendingMovieRepository
-import com.pien.moviekmm.core.data.repository.TrendingMovieRepositoryImpl
+import com.pien.moviekmm.core.data.repository.MovieRepository
+import com.pien.moviekmm.core.data.repository.MovieRepositoryImpl
 import com.pien.moviekmm.core.database.MovieDatabase
 import com.pien.moviekmm.core.database.daos.MovieDao
 import com.pien.moviekmm.core.database.daos.MovieDetailDao
@@ -19,6 +17,7 @@ import com.pien.moviekmm.core.data.network.HttpClientFactory
 import com.pien.moviekmm.core.data.network.RemoteMovieDetailDataSource
 import com.pien.moviekmm.core.data.network.RemoteTrendingMoviesDataSource
 import com.pien.moviekmm.core.database.Database
+import com.pien.moviekmm.core.domain.networkconnectivity.NetworkConnectivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,9 +48,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTrendingMovieRepository(remoteDataSource: RemoteTrendingMoviesDataSource,
-        localDataSource: LocalTrendingMoviesDataSource): TrendingMovieRepository{
-        return TrendingMovieRepositoryImpl(remoteDataSource, localDataSource)
+    fun provideTrendingMovieRepository(
+        remoteMovieDataSource: RemoteTrendingMoviesDataSource,
+        localMovieDataSource: LocalTrendingMoviesDataSource,
+        remoteMovieDetailDataSource: RemoteMovieDetailDataSource,
+        localMovieDetailDataSource: LocalMovieDetailsDataSource): MovieRepository {
+
+        return MovieRepositoryImpl(remoteMovieDataSource, localMovieDataSource, remoteMovieDetailDataSource, localMovieDetailDataSource)
     }
 
     @Provides
@@ -68,27 +71,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMovieDetailRepository(remoteDataSource: RemoteMovieDetailDataSource,
-        localDataSource: LocalMovieDetailsDataSource): MovieDetailRepository {
-        return MovieDetailRepositoryImpl(remoteDataSource, localDataSource)
+    fun provideGetTrendingMovieUseCase(repository: MovieRepository, networkConnectivity: NetworkConnectivity): GetTrendingMoviesUseCase {
+        return GetTrendingMoviesUseCase(repository, networkConnectivity)
     }
 
     @Provides
     @Singleton
-    fun provideGetTrendingMovieUseCase(repository: TrendingMovieRepository): GetTrendingMoviesUseCase {
-        return GetTrendingMoviesUseCase(repository)
+    fun provideSearchTrendingMovieUseCase(repository: MovieRepository, networkConnectivity: NetworkConnectivity): SearchTrendingMoviesUseCase {
+        return SearchTrendingMoviesUseCase(repository, networkConnectivity)
     }
 
     @Provides
     @Singleton
-    fun provideSearchTrendingMovieUseCase(repository: TrendingMovieRepository): SearchTrendingMoviesUseCase {
-        return SearchTrendingMoviesUseCase(repository)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetMovieDetailUseCase(repository: MovieDetailRepository): GetMovieDetailUseCase {
-        return GetMovieDetailUseCase(repository)
+    fun provideGetMovieDetailUseCase(repository: MovieRepository, networkConnectivity: NetworkConnectivity): GetMovieDetailUseCase {
+        return GetMovieDetailUseCase(repository, networkConnectivity)
     }
 
     @Provides
@@ -119,5 +115,11 @@ object AppModule {
     @Singleton
     fun provideMovieDetailMapper(): MovieDetailMapper {
         return MovieDetailMapper
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkConnectivity(@ApplicationContext context: Context): NetworkConnectivity {
+        return NetworkConnectivity(context)
     }
 }

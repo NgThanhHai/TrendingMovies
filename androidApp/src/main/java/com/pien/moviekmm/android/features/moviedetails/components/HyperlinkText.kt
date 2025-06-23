@@ -13,6 +13,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
 
+const val tag = "URL_PATH"
 @Composable
 fun HyperlinkText(
     modifier: Modifier = Modifier,
@@ -50,7 +51,7 @@ fun HyperlinkText(
                 end = endIndex
             )
             addStringAnnotation(
-                tag = "URL_PATH",
+                tag = tag,
                 annotation = hyperlinks[index],
                 start = startIndex,
                 end = endIndex
@@ -71,7 +72,7 @@ fun HyperlinkText(
         text = annotatedString,
         style = MaterialTheme.typography.bodyMedium,
         onClick = {
-            annotatedString.getStringAnnotations("URL_PATH", it, it).firstOrNull()?.let { link ->
+            annotatedString.getStringAnnotations(tag, it, it).firstOrNull()?.let { link ->
                 uriHandler.openUri(link.item)
             }
         }

@@ -14,12 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pien.moviekmm.BuildConfig
+import com.pien.moviekmm.android.R
 import com.pien.moviekmm.android.core.components.RatingBar
 import com.pien.moviekmm.android.core.components.ImagePosterView
 import com.pien.moviekmm.core.domain.model.Movie
@@ -55,7 +57,7 @@ fun MovieItem(movie: Movie,
         )
         Spacer(modifier = modifier.height(8.dp))
         Text(
-            text = "Release in " + movie.releaseDate,
+            text = stringResource(R.string.str_movie_description_release_date) + movie.releaseDate,
             fontSize = 16.sp,
             color = Color.White,
             modifier = modifier
@@ -75,9 +77,9 @@ fun MovieItem(movie: Movie,
 fun MovieItemPreview() {
     MovieItem(
         movie = Movie(id = 0,
-            title = "abc",
+            title = stringResource(R.string.str_preview_movie_title),
             posterPath = "",
-            releaseDate = "20-06-2025",
+            releaseDate = stringResource(R.string.str_preview_date_20_06_2025),
             voteAverage = 1.2,
             voteCount = 1000),
         onClickMovie = { _,_ -> }

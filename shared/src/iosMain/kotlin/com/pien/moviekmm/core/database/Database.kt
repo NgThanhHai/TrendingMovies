@@ -1,7 +1,6 @@
 package com.pien.moviekmm.core.database
 
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSDocumentDirectory

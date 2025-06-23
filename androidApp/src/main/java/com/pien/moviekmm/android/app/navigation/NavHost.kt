@@ -1,34 +1,27 @@
 package com.pien.moviekmm.android.app.navigation
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.animation.SharedTransitionLayout
-import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.pien.moviekmm.android.features.moviedetails.navigation.MOVIE_DETAIL_ROUTE
+import com.pien.moviekmm.android.features.moviedetails.navigation.MovieDetailRoute
 import com.pien.moviekmm.android.features.moviedetails.navigation.movieDetailScreen
-import com.pien.moviekmm.android.features.trendingmovies.navigation.TRENDING_MOVIE_ROUTE
+import com.pien.moviekmm.android.features.trendingmovies.navigation.TrendingMovieRoute
 import com.pien.moviekmm.android.features.trendingmovies.navigation.trendingMovieScreen
-
 
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    startDestination: String = TRENDING_MOVIE_ROUTE
+    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = TrendingMovieRoute,
         modifier = modifier
     ) {
         trendingMovieScreen(
             onOpenMovieDetail = { id, posterPath ->
-                navController.navigate(MOVIE_DETAIL_ROUTE.replace("{movie_id}", id.toString()).replace("{poster_path}", posterPath.removePrefix("/")))
+                navController.navigate(MovieDetailRoute(movieId = id, posterUrl = posterPath))
             }
         )
         movieDetailScreen(

@@ -80,10 +80,6 @@ kotlin {
                 implementation(libs.ktor.serialization.kotlinx.json)
                 implementation(libs.ktor.client.logging)
 
-                // Image Loading - Coil
-                implementation(libs.coil.compose)
-                implementation(libs.coil.network.ktor3)
-
                 // Serialization & Coroutines
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.coroutines.core)

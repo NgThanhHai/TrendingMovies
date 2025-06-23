@@ -19,9 +19,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pien.moviekmm.android.R
 
 @Composable
 fun MovieSearchBar(modifier: Modifier = Modifier,
@@ -34,7 +36,7 @@ fun MovieSearchBar(modifier: Modifier = Modifier,
         value = searchText,
         placeholder = {
             Text(
-                text = "Search your movie...",
+                text = stringResource(R.string.str_search_bar_title),
                 fontSize = 15.sp)
          },
         onValueChange = { onQueryChange(it) },
@@ -42,7 +44,7 @@ fun MovieSearchBar(modifier: Modifier = Modifier,
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = "Search Icon"
+                contentDescription = stringResource(R.string.str_search_icon_content)
             )
         },
         shape = RoundedCornerShape(15.dp),
@@ -65,9 +67,11 @@ fun MovieSearchBar(modifier: Modifier = Modifier,
                     Icon(
                         Icons.Default.Refresh,
                         contentDescription = "",
-                        modifier = Modifier.clickable {
-                            onQueryChange(searchText)
-                        }
+                        modifier = Modifier
+                            .padding(horizontal = 4.dp)
+                            .clickable {
+                                onQueryChange(searchText)
+                            }
                     )
                 }
             }
@@ -79,12 +83,13 @@ fun MovieSearchBar(modifier: Modifier = Modifier,
 @Composable
 fun MovieSearchBarPreview() {
     MovieSearchBar(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(8.dp, 0.dp, 8.dp, 0.dp)
             .background(MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(15.dp))
             .clip(RoundedCornerShape(15.dp))
             .height(70.dp),
-        searchText = "search",
+        searchText = stringResource(R.string.str_preview_search_content),
         showReload = true,
         onQueryChange = {},
         onClearText = {})

@@ -27,7 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.pien.moviekmm.android.R
 import com.pien.moviekmm.android.core.components.IndeterminateCircularIndicator
 import com.pien.moviekmm.android.core.components.ImagePosterView
 import com.pien.moviekmm.android.features.moviedetails.components.MovieCardBottomView
@@ -60,7 +62,7 @@ fun MovieDetailScreen(
                     IconButton(onClick = { onBackPressed() }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.str_back_button_content),
                             modifier = Modifier.clickable {
                                 onBackPressed()
                             }
@@ -79,7 +81,8 @@ fun MovieDetailScreen(
                 urlPath = posterPath
             )
         }
-        Box(modifier = modifier.padding(contentPadding)
+        Box(modifier = modifier
+            .padding(contentPadding)
             .fillMaxSize()) {
             if (uiState.showLoading) {
                 Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {

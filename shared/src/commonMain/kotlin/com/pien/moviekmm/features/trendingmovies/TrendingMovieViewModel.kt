@@ -17,40 +17,31 @@ class TrendingMovieViewModel(
     private val getTrendingMoviesUseCase: GetTrendingMoviesUseCase,
     private val searchTrendingMoviesUseCase: SearchTrendingMoviesUseCase,
     coroutineScope: CoroutineScope?) {
-
+    
+    // use coroutineScope for android, otherwise use Default Main Dispatchers (iOS)
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
     private var cacheListMovies: List<Movie> = listOf()
 
     private val _state = MutableStateFlow(TrendingMovieUIState())
     val state: StateFlow<TrendingMovieUIState> = _state
 
-    fun onEvent(event: TrendingMovieEvent, isNetworkAvailable: Boolean) {
+    fun onEvent(event: TrendingMovieEvent) {
         when(event) {
             is TrendingMovieEvent.SearchMovies -> {
-                queryMovies(event.query, isNetworkAvailable)
+                queryMovies(event.query)
             }
             is TrendingMovieEvent.UpdateTrendingMovies -> {
-                getTrendingMovies(isNetworkAvailable)
+                getTrendingMovies()
             }
             else -> {}
         }
     }
 
     private var queryMoviesJob: Job? = null
-    private fun queryMovies(query: String, isNetworkAvailable: Boolean) {
-        if (query.isEmpty()) {
+    private fun queryMovies(query: String) {
+        if (query.isEmpty() && cacheListMovies.isNotEmpty()) {
             _state.update {
-                it.copy(listMovies = cacheListMovies.toList(), searchText = query)
-            }
-            return
-        }
-        if(!isNetworkAvailable) {
-            _state.update {
-                it.copy(showLoading = false,
-                    errorToast = DataError.Network.NO_INTERNET.toString(),
-                    searchText = query,
-                    showReload = true
-                )
+                it.copy(listMovies = cacheListMovies.toList(), searchText = query, errorToast = "", showReload = false)
             }
             return
         }
@@ -67,10 +58,19 @@ class TrendingMovieViewModel(
                     }
                 }
                 is Result.Failure -> {
-                    _state.update {
-                        it.copy(showLoading = false,
-                            errorToast = result.error.toString()
-                        )
+                    if(result.error == DataError.Network.NO_INTERNET) {
+                        _state.update {
+                            it.copy(showLoading = false,
+                                errorToast = DataError.Network.NO_INTERNET.toString(),
+                                showReload = true
+                            )
+                        }
+                    } else {
+                        _state.update {
+                            it.copy(showLoading = false,
+                                errorToast = result.error.toString()
+                            )
+                        }
                     }
                 }
             }
@@ -78,12 +78,12 @@ class TrendingMovieViewModel(
     }
 
     private var getTrendingMoviesJob: Job? = null
-    private fun getTrendingMovies(isNetworkAvailable: Boolean) {
+    private fun getTrendingMovies() {
         getTrendingMoviesJob = viewModelScope.launch {
             _state.update {
                 it.copy(showLoading = true)
             }
-            when(val result = getTrendingMoviesUseCase.execute(isNetworkAvailable = isNetworkAvailable)) {
+            when(val result = getTrendingMoviesUseCase.execute()) {
                 is Result.Success -> {
                     cacheListMovies = result.data.results
                     val backgroundUrl = cacheListMovies.maxByOrNull { it.voteAverage ?: 0.0 }?.posterPath ?: ""

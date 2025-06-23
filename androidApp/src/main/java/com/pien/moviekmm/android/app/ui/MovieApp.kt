@@ -23,8 +23,7 @@ fun MovieApp(
     ) { padding ->
         AppNavHost(
             navController = navController,
-            modifier = modifier
-                .padding(padding)
+            modifier = modifier.padding(padding)
         )
     }
 }

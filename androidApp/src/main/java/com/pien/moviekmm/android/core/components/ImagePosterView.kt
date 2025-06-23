@@ -3,12 +3,14 @@ package com.pien.moviekmm.android.core.components
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import coil3.compose.AsyncImage
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.pien.moviekmm.BuildConfig
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ImagePosterView(modifier: Modifier = Modifier, urlPath: String){
-    AsyncImage(
+    GlideImage(
         model = "${BuildConfig.IMAGE_URL}$urlPath",
         contentDescription = "",
         modifier = modifier,

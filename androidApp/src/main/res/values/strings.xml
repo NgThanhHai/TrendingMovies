@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_trending_screen_title_in_searching">Search Results</string>
+    <string name="str_trending_screen_title_default">Trending Movies</string>
+    <string name="str_search_bar_title">Search your movie...</string>
+    <string name="str_search_icon_content">Search Icon</string>
+    <string name="str_preview_search_content">search</string>
+    <string name="str_preview_date_20_06_2025">20-06-2025</string>
+    <string name="str_preview_movie_title">The Ring of the Lords</string>
+    <string name="str_movie_description_release_date">"Release in "</string>
+    <string name="str_back_button_content">Back</string>
+    <string name="str_movie_detail_screen_description_release_date">"Release Date: "</string>
+    <string name="str_movie_detail_screen_genres">"Genres: "</string>
+    <string name="str_movie_detail_screen_rating">"Rating: "</string>
+    <string name="str_movie_detail_screen_by">"by "</string>
+    <string name="str_movie_detail_screen_viewers">%1$s viewers</string>
+    <string name="str_movie_detail_screen_time">"Time: "</string>
+    <string name="str_movie_detail_screen_minutes">%1$s minutes</string>
+    <string name="str_movie_detail_screen_content">"Content: "</string>
+    <string name="str_movie_detail_screen_adults_only">Adults only</string>
+    <string name="str_movie_detail_screen_for_all_ages">For all ages</string>
+    <string name="str_movie_detail_screen_overview">"Overview: "</string>
+    <string name="str_movie_detail_screen_for_more_information">For more information: %1$s</string>
+</resources>
