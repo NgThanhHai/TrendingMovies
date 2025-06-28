@@ -5,13 +5,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.pien.moviekmm.BuildConfig
+import com.pien.moviekmm.SharedBuildConfig
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ImagePosterView(modifier: Modifier = Modifier, urlPath: String){
     GlideImage(
-        model = "${BuildConfig.IMAGE_URL}$urlPath",
+        model = "${SharedBuildConfig.IMAGE_URL}$urlPath",
         contentDescription = "",
         modifier = modifier,
         contentScale = ContentScale.Crop

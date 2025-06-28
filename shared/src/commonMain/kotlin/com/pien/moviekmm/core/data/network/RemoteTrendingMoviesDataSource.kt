@@ -1,6 +1,6 @@
 package com.pien.moviekmm.core.data.network
 
-import com.pien.moviekmm.BuildConfig
+import com.pien.moviekmm.SharedBuildConfig
 import com.pien.moviekmm.core.data.datasource.TrendMovieDataSource
 import com.pien.moviekmm.core.domain.model.MoviePaging
 import com.pien.moviekmm.core.data.response.DataError
@@ -17,7 +17,7 @@ class RemoteTrendingMoviesDataSource(
     override suspend fun getTrendingMovies(): Result<MoviePaging, DataError> {
         try {
             val response = httpClient.get {
-                url(BuildConfig.BASE_URL + "/trending/movie/day?language=en-US")
+                url(SharedBuildConfig.BASE_URL + "/trending/movie/day?language=en-US")
                 accept(ContentType.Application.Json)
             }
 
@@ -40,7 +40,7 @@ class RemoteTrendingMoviesDataSource(
     override suspend fun searchMovie(query: String): Result<MoviePaging, DataError> {
         try {
             val response = httpClient.get {
-                url(BuildConfig.BASE_URL + "/search/movie")
+                url(SharedBuildConfig.BASE_URL + "/search/movie")
                 accept(ContentType.Application.Json)
                 parameter("query", query)
                 parameter("language", "en-US")

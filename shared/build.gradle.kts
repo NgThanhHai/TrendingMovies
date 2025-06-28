@@ -30,7 +30,7 @@ val buildConfigGenerator by tasks.registering(Sync::class) {
             """
         |package com.pien.moviekmm
         |
-        |object BuildConfig {
+        |object SharedBuildConfig {
         |  const val BASE_URL = "$baseUrl"
         |  const val API_KEY = "$apiKey"
         |  const val IMAGE_URL = "$imageUrl"
@@ -39,7 +39,7 @@ val buildConfigGenerator by tasks.registering(Sync::class) {
       """.trimMargin()
         )
     ) {
-        rename { "BuildConfig.kt" }
+        rename { "SharedBuildConfig.kt" }
         into("com/pien/moviekmm")
     }
 

@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.navigation.compose)
+    implementation(libs.compose.animation)
 
     // Hilt
     implementation(libs.androidx.hilt.navigation.compose)

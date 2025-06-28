@@ -1,5 +1,7 @@
 package com.pien.moviekmm.android.features.moviedetails.navigation
 
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -12,7 +14,9 @@ import com.pien.moviekmm.android.features.moviedetails.presentation.AndroidMovie
 import com.pien.moviekmm.android.features.moviedetails.presentation.MovieDetailScreen
 import com.pien.moviekmm.features.moviedetails.MovieDetailEvent
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 fun NavGraphBuilder.movieDetailScreen(
+    transitionScope: SharedTransitionScope,
     onNavigateUp: () -> Unit
 ) {
     composable<MovieDetailRoute> { navBackStackEntry ->
@@ -25,8 +29,11 @@ fun NavGraphBuilder.movieDetailScreen(
 
         MovieDetailScreen(
             uiState = state,
-            posterPath = "/${movieDetail.posterUrl}",
+            title = movieDetail.movieTitle,
+            posterPath = movieDetail.posterUrl,
             modifier = Modifier,
+            transitionScope = transitionScope,
+            animatedContentScope = this,
             onBackPressed = onNavigateUp
         )
     }

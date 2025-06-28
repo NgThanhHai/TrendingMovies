@@ -1,6 +1,6 @@
 package com.pien.moviekmm.core.data.network
 
-import com.pien.moviekmm.BuildConfig
+import com.pien.moviekmm.SharedBuildConfig
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.plugins.*
@@ -29,7 +29,7 @@ actual class HttpClientFactory {
                 level = LogLevel.BODY
             }
             install(DefaultRequest) {
-                header(HttpHeaders.Authorization, "Bearer ${BuildConfig.API_KEY}")
+                header(HttpHeaders.Authorization, "Bearer ${SharedBuildConfig.API_KEY}")
             }
         }
     }

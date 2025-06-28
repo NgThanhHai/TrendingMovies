@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -24,12 +25,7 @@ import com.pien.moviekmm.android.R
 
 @Composable
 fun NoConnectionScreen(modifier: Modifier, errorText: String) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentSize(Alignment.Center)
-            .clip(shape = RoundedCornerShape(16.dp))
-    ) {
+    Box(modifier = modifier.fillMaxSize().wrapContentSize(Alignment.Center).clip(shape = RoundedCornerShape(16.dp))) {
         Column(modifier = Modifier
             .fillMaxWidth().align(Alignment.Center),
             verticalArrangement = Arrangement.Center,

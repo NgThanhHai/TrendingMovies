@@ -1,5 +1,9 @@
 package com.pien.moviekmm.android.app.navigation
 
+import android.annotation.SuppressLint
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -9,24 +13,31 @@ import com.pien.moviekmm.android.features.moviedetails.navigation.movieDetailScr
 import com.pien.moviekmm.android.features.trendingmovies.navigation.TrendingMovieRoute
 import com.pien.moviekmm.android.features.trendingmovies.navigation.trendingMovieScreen
 
+@SuppressLint("UnusedSharedTransitionModifierParameter")
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    NavHost(
-        navController = navController,
-        startDestination = TrendingMovieRoute,
-        modifier = modifier
-    ) {
-        trendingMovieScreen(
-            onOpenMovieDetail = { id, posterPath ->
-                navController.navigate(MovieDetailRoute(movieId = id, posterUrl = posterPath))
-            }
-        )
-        movieDetailScreen(
-            onNavigateUp = {
-                navController.navigateUp()
-            })
+    SharedTransitionLayout {
+        NavHost(
+            navController = navController,
+            startDestination = TrendingMovieRoute,
+            modifier = modifier
+        ) {
+            trendingMovieScreen(
+                transitionScope = this@SharedTransitionLayout,
+                onOpenMovieDetail = { id, title, posterPath ->
+                    navController.navigate(MovieDetailRoute(movieId = id, movieTitle = title, posterUrl = posterPath))
+                }
+            )
+            movieDetailScreen(
+                transitionScope = this@SharedTransitionLayout,
+                onNavigateUp = {
+                    navController.navigateUp()
+                })
+        }
     }
+
 }

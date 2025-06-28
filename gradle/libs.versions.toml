@@ -19,6 +19,7 @@ sqlite = "2.5.0-SNAPSHOT"
 cloudy = "0.2.7"
 nav_version = "2.9.0"
 glide = "1.0.0-beta01"
+composeAnimation = "1.8.3"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -33,7 +34,7 @@ androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-com
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-ext-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltExt" }
-
+compose-animation = { group = "androidx.compose.animation", name = "animation",  version.ref = "composeAnimation" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "nav_version"}
 
 # Networking - Ktor
