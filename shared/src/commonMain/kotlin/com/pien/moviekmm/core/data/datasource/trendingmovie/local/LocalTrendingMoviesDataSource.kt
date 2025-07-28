@@ -1,6 +1,6 @@
-package com.pien.moviekmm.core.data.local
+package com.pien.moviekmm.core.data.datasource.trendingmovie.local
 
-import com.pien.moviekmm.core.data.datasource.TrendMovieDataSource
+import com.pien.moviekmm.core.domain.datasource.TrendMovieDataSource
 import com.pien.moviekmm.core.data.mapper.MovieMapper
 import com.pien.moviekmm.core.data.response.DataError
 import com.pien.moviekmm.core.data.response.Result

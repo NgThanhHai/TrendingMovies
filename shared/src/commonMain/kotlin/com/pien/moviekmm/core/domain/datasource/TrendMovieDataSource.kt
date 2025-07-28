@@ -1,4 +1,4 @@
-package com.pien.moviekmm.core.data.datasource
+package com.pien.moviekmm.core.domain.datasource
 
 import com.pien.moviekmm.core.domain.model.MoviePaging
 import com.pien.moviekmm.core.data.response.DataError

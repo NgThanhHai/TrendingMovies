@@ -1,13 +1,14 @@
 package com.pien.moviekmm.core.data.repository
 
-import com.pien.moviekmm.core.data.local.LocalMovieDetailsDataSource
-import com.pien.moviekmm.core.data.local.LocalTrendingMoviesDataSource
-import com.pien.moviekmm.core.data.network.RemoteMovieDetailDataSource
-import com.pien.moviekmm.core.data.network.RemoteTrendingMoviesDataSource
+import com.pien.moviekmm.core.data.datasource.moviedetail.local.LocalMovieDetailsDataSource
+import com.pien.moviekmm.core.data.datasource.trendingmovie.local.LocalTrendingMoviesDataSource
+import com.pien.moviekmm.core.data.datasource.moviedetail.remote.RemoteMovieDetailDataSource
+import com.pien.moviekmm.core.data.datasource.trendingmovie.remote.RemoteTrendingMoviesDataSource
 import com.pien.moviekmm.core.domain.model.MoviePaging
 import com.pien.moviekmm.core.data.response.DataError
 import com.pien.moviekmm.core.data.response.Result
 import com.pien.moviekmm.core.domain.model.MovieDetail
+import com.pien.moviekmm.core.domain.repository.MovieRepository
 
 class MovieRepositoryImpl(
     private val remoteMovieDataSource: RemoteTrendingMoviesDataSource,

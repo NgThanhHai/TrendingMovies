@@ -1,6 +1,6 @@
-package com.pien.moviekmm.core.data.local
+package com.pien.moviekmm.core.data.datasource.moviedetail.local
 
-import com.pien.moviekmm.core.data.datasource.MovieDetailDataSource
+import com.pien.moviekmm.core.domain.datasource.MovieDetailDataSource
 import com.pien.moviekmm.core.data.mapper.MovieDetailMapper
 import com.pien.moviekmm.core.data.response.DataError
 import com.pien.moviekmm.core.data.response.Result

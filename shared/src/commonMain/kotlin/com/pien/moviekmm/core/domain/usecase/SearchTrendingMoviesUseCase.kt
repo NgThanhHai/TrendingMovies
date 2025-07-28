@@ -1,6 +1,6 @@
 package com.pien.moviekmm.core.domain.usecase
 
-import com.pien.moviekmm.core.data.repository.MovieRepository
+import com.pien.moviekmm.core.domain.repository.MovieRepository
 import com.pien.moviekmm.core.domain.model.MoviePaging
 import com.pien.moviekmm.core.data.response.DataError
 import com.pien.moviekmm.core.data.response.Result

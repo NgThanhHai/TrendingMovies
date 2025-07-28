@@ -1,6 +1,6 @@
-package com.pien.moviekmm.core.data.network
+package com.pien.moviekmm.core.data.datasource.moviedetail.remote
 
-import com.pien.moviekmm.core.data.datasource.MovieDetailDataSource
+import com.pien.moviekmm.core.domain.datasource.MovieDetailDataSource
 import com.pien.moviekmm.core.domain.model.MovieDetail
 import com.pien.moviekmm.core.data.response.DataError
 import com.pien.moviekmm.core.data.response.Result

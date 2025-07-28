@@ -1,7 +1,7 @@
-package com.pien.moviekmm.core.data.network
+package com.pien.moviekmm.core.data.datasource.trendingmovie.remote
 
 import com.pien.moviekmm.SharedBuildConfig
-import com.pien.moviekmm.core.data.datasource.TrendMovieDataSource
+import com.pien.moviekmm.core.domain.datasource.TrendMovieDataSource
 import com.pien.moviekmm.core.domain.model.MoviePaging
 import com.pien.moviekmm.core.data.response.DataError
 import com.pien.moviekmm.core.data.response.Result
