@@ -53,8 +53,7 @@ fun MovieItem(movie: Movie,
                     .clip(RoundedCornerShape(8.dp))
                     .sharedElement(
                         sharedTransitionScope.rememberSharedContentState(key = movie.posterPath.toString()),
-                        animatedVisibilityScope = animatedContentScope,
-                        boundsTransform = { _, _ -> tween(durationMillis = 500) })
+                        animatedVisibilityScope = animatedContentScope)
             )
             Text(
                 text = movie.title,
@@ -66,10 +65,7 @@ fun MovieItem(movie: Movie,
                     .padding(top = 8.dp)
                     .padding(horizontal = 2.dp)
                     .sharedElement(sharedTransitionScope.rememberSharedContentState(key = movie.title),
-                        animatedVisibilityScope = animatedContentScope,
-                        boundsTransform = { _, _ ->
-                            tween(durationMillis = 500)
-                        }
+                        animatedVisibilityScope = animatedContentScope
                     ),
                 maxLines = 2
             )

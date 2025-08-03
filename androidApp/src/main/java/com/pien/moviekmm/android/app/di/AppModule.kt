@@ -1,11 +1,11 @@
 package com.pien.moviekmm.android.app.di
 
 import android.content.Context
-import com.pien.moviekmm.core.data.local.LocalMovieDetailsDataSource
-import com.pien.moviekmm.core.data.local.LocalTrendingMoviesDataSource
+import com.pien.moviekmm.core.data.datasource.moviedetail.local.LocalMovieDetailsDataSource
+import com.pien.moviekmm.core.data.datasource.trendingmovie.local.LocalTrendingMoviesDataSource
 import com.pien.moviekmm.core.data.mapper.MovieDetailMapper
 import com.pien.moviekmm.core.data.mapper.MovieMapper
-import com.pien.moviekmm.core.data.repository.MovieRepository
+import com.pien.moviekmm.core.domain.repository.MovieRepository
 import com.pien.moviekmm.core.data.repository.MovieRepositoryImpl
 import com.pien.moviekmm.core.database.MovieDatabase
 import com.pien.moviekmm.core.database.daos.MovieDao
@@ -14,8 +14,8 @@ import com.pien.moviekmm.core.domain.usecase.GetMovieDetailUseCase
 import com.pien.moviekmm.core.domain.usecase.GetTrendingMoviesUseCase
 import com.pien.moviekmm.core.domain.usecase.SearchTrendingMoviesUseCase
 import com.pien.moviekmm.core.data.network.HttpClientFactory
-import com.pien.moviekmm.core.data.network.RemoteMovieDetailDataSource
-import com.pien.moviekmm.core.data.network.RemoteTrendingMoviesDataSource
+import com.pien.moviekmm.core.data.datasource.moviedetail.remote.RemoteMovieDetailDataSource
+import com.pien.moviekmm.core.data.datasource.trendingmovie.remote.RemoteTrendingMoviesDataSource
 import com.pien.moviekmm.core.database.Database
 import com.pien.moviekmm.core.domain.networkconnectivity.NetworkConnectivity
 import dagger.Module
@@ -52,8 +52,8 @@ object AppModule {
         remoteMovieDataSource: RemoteTrendingMoviesDataSource,
         localMovieDataSource: LocalTrendingMoviesDataSource,
         remoteMovieDetailDataSource: RemoteMovieDetailDataSource,
-        localMovieDetailDataSource: LocalMovieDetailsDataSource): MovieRepository {
-
+        localMovieDetailDataSource: LocalMovieDetailsDataSource
+    ): MovieRepository {
         return MovieRepositoryImpl(remoteMovieDataSource, localMovieDataSource, remoteMovieDetailDataSource, localMovieDetailDataSource)
     }
 

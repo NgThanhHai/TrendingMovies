@@ -1,11 +1,9 @@
 package com.pien.moviekmm.android.features.moviedetails.presentation
 
 import android.widget.Toast
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -47,15 +44,11 @@ fun MovieDetailScreen(
     animatedContentScope: AnimatedContentScope,
     onBackPressed: () -> Unit
 ) {
-    val movie = uiState.movieDetail
     val context = LocalContext.current
     LaunchedEffect(key1 = uiState.error) {
         if (uiState.error.isNotEmpty()) {
             Toast.makeText(context, uiState.error, Toast.LENGTH_LONG).show()
         }
-    }
-    BackHandler {
-        onBackPressed()
     }
     Scaffold(
         topBar = {
@@ -68,10 +61,7 @@ fun MovieDetailScreen(
                     with(transitionScope) {
                         Text(text = title,
                             modifier = Modifier.sharedElement(transitionScope.rememberSharedContentState(key = title),
-                                animatedVisibilityScope = animatedContentScope,
-                                boundsTransform = { _, _ ->
-                                    tween(durationMillis = 500)
-                                }
+                                animatedVisibilityScope = animatedContentScope
                             )
                         )
                     }
@@ -95,10 +85,7 @@ fun MovieDetailScreen(
                 .padding(contentPadding)
                 .fillMaxSize()
                 .sharedElement(transitionScope.rememberSharedContentState(key = posterPath),
-                    animatedVisibilityScope = animatedContentScope,
-                    boundsTransform = { _, _ ->
-                        tween(durationMillis = 500)
-                    }
+                    animatedVisibilityScope = animatedContentScope
                 )
             )
         }
@@ -108,8 +95,8 @@ fun MovieDetailScreen(
             if (uiState.showLoading) {
                 LoadingScreen(modifier = modifier.height(48.dp).width(48.dp).padding(8.dp))
             } else {
-                movie?.let {
-                    MovieCardBottomView(modifier = modifier.align(Alignment.BottomCenter), movie = it)
+                uiState.movieDetail?.let {
+                    MovieCardBottomView(modifier = modifier, movie = it)
                 }
             }
         }

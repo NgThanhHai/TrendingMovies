@@ -1,9 +1,11 @@
 package com.pien.moviekmm.android.app.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
-import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -24,6 +26,10 @@ fun AppNavHost(
         NavHost(
             navController = navController,
             startDestination = TrendingMovieRoute,
+            popEnterTransition = { EnterTransition.None },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(200))
+            },
             modifier = modifier
         ) {
             trendingMovieScreen(
