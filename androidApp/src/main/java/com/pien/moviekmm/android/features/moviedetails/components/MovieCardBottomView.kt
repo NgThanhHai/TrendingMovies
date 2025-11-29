@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -23,7 +24,9 @@ import com.pien.moviekmm.core.domain.model.MovieDetail.Companion.getListGenresCo
 
 @Composable
 fun MovieCardBottomView(modifier: Modifier = Modifier, movie: MovieDetail) {
-    Column(modifier = modifier.background(Color(0x55000000)),
+    Column(modifier = modifier
+        .fillMaxWidth()
+        .background(Color(0x55000000)),
         verticalArrangement = Arrangement.Bottom) {
         DescriptionText(modifier = modifier.padding(top = 8.dp),
             title = stringResource(R.string.str_movie_detail_screen_description_release_date),

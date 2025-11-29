@@ -25,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.pien.moviekmm.android.R
@@ -89,14 +90,17 @@ fun MovieDetailScreen(
                 )
             )
         }
-        Box(modifier = modifier
-            .padding(contentPadding)
-            .fillMaxSize()) {
+        Box(
+            modifier = modifier
+                .padding(contentPadding)
+                .fillMaxSize(),
+            contentAlignment = Alignment.BottomCenter
+        ) {
             if (uiState.showLoading) {
                 LoadingScreen(modifier = modifier.height(48.dp).width(48.dp).padding(8.dp))
             } else {
                 uiState.movieDetail?.let {
-                    MovieCardBottomView(modifier = modifier, movie = it)
+                    MovieCardBottomView(movie = it)
                 }
             }
         }
